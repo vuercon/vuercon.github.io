@@ -71,6 +71,258 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-我的第一篇博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
+  <time class="dt-published" datetime="2026-10-22T13:01:26.000Z" itemprop="datePublished">2026-10-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/10/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="如何建立一个Blog"><a href="#如何建立一个Blog" class="headerlink" title="如何建立一个Blog"></a>如何建立一个Blog</h1><h1 id="Hexo-GitHub-Pages-搭建个人博客【小白完整版全流程】"><a href="#Hexo-GitHub-Pages-搭建个人博客【小白完整版全流程】" class="headerlink" title="Hexo + GitHub Pages 搭建个人博客【小白完整版全流程】"></a>Hexo + GitHub Pages 搭建个人博客【小白完整版全流程】</h1><blockquote>
+<p>环境：Windows，Node放D盘，Hexo博客项目放在 <code>D:\blog</code><br>最终效果：线上可访问的静态博客：<code>https://你的用户名.github.io</code><br>本次示例用户名：<code>vuercon</code></p>
+</blockquote>
+<h2 id="前置准备清单"><a href="#前置准备清单" class="headerlink" title="前置准备清单"></a>前置准备清单</h2><ol>
+<li>注册 GitHub 账号（记住你的用户名！仓库名字必须和它强绑定）</li>
+<li>下载两个软件：<strong>Node.js</strong>、<strong>Git</strong></li>
+<li>推荐编辑器：IDEA &#x2F; VS Code（用来改配置、写文章）</li>
+</ol>
+<hr>
+<h2 id="一、安装-Node-js（提供npm包管理器，Hexo依赖它）"><a href="#一、安装-Node-js（提供npm包管理器，Hexo依赖它）" class="headerlink" title="一、安装 Node.js（提供npm包管理器，Hexo依赖它）"></a>一、安装 Node.js（提供npm包管理器，Hexo依赖它）</h2><ol>
+<li>打开 Node.js 官网，选择 Windows <code>.msi</code> 安装包（不要zip免安装版）</li>
+<li>双击msi启动安装<ul>
+<li>到选择安装路径页：点<code>Browse</code>，改成D盘，例：<code>D:\nodejs</code></li>
+<li>✅ 路径要求：<strong>无中文、无空格</strong>，禁止类似 <code>D:\Node 软件</code></li>
+<li>✅ <strong>全程保持勾选 Add to PATH（添加环境变量），不要取消！</strong></li>
+<li>一路Next完成安装</li>
+</ul>
+</li>
+<li>安装完成：<strong>关闭所有已经打开的CMD&#x2F;PowerShell，重新新开一个终端</strong>（必须重启终端，环境变量才生效）</li>
+<li>校验是否安装成功，终端输入：</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>✅ 正常输出版本号&#x3D;成功；提示不是内部命令&#x3D;环境变量勾选失败，重装。</p>
+<h2 id="二、安装-Git（用来提交代码、推送到GitHub）"><a href="#二、安装-Git（用来提交代码、推送到GitHub）" class="headerlink" title="二、安装 Git（用来提交代码、推送到GitHub）"></a>二、安装 Git（用来提交代码、推送到GitHub）</h2><ol>
+<li>Git官网下载 Windows 64位安装包</li>
+<li>双击安装，<strong>重点选项</strong>：<ul>
+<li>勾选：<code>Git from the command line and also from 3rd-party software</code>（加到系统PATH）</li>
+<li>其余选项全部默认，一路Next</li>
+</ul>
+</li>
+<li>新开终端校验：</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<p>✅ 输出版本号即成功。<br>4. 配置Git身份（只需要执行一次，替换成你自己GitHub信息）</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;GitHub绑定的邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、全局安装-Hexo-命令行工具-hexo-cli"><a href="#三、全局安装-Hexo-命令行工具-hexo-cli" class="headerlink" title="三、全局安装 Hexo 命令行工具 hexo-cli"></a>三、全局安装 Hexo 命令行工具 hexo-cli</h2><p>终端任意目录执行：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>-g</code> &#x3D; 全局安装，Node装在D盘也不受影响<br>输出 <code>added xx packages</code> 代表成功；warn黄色警告不用管，不影响使用</p>
+<ol start="5">
+<li>校验Hexo：</li>
+</ol>
+</blockquote>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<p>✅ 输出版本信息&#x3D;hexo安装完成</p>
+<h2 id="四、初始化Hexo博客项目（放在D盘blog文件夹）"><a href="#四、初始化Hexo博客项目（放在D盘blog文件夹）" class="headerlink" title="四、初始化Hexo博客项目（放在D盘blog文件夹）"></a>四、初始化Hexo博客项目（放在D盘blog文件夹）</h2><ol>
+<li>终端切换到D盘，新建并进入blog文件夹</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">D:</span></span><br><span class="line"><span class="function"><span class="title">mkdir</span> <span class="title">blog</span></span></span><br><span class="line"><span class="function"><span class="title">cd</span> <span class="title">blog</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>执行完上面，你的终端前缀会变成 <code>D:\blog&gt;</code>，代表位置正确</p>
+<ol start="2">
+<li>初始化Hexo骨架</li>
+</ol>
+</blockquote>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>它会自动拉取基础模板，等待跑完，不要中途关掉窗口</p>
+<ol start="3">
+<li>安装项目依赖包（init完成后必须跑）</li>
+</ol>
+</blockquote>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>✅ 本地预览测试（可选，确认博客本地能跑）</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>打开浏览器访问 <code>[http://localhost:4000](http://localhost:4000)</code>，看到Hello World页面就正常。</p>
+<blockquote>
+<p>停止本地预览：终端按 <code>Ctrl + C</code></p>
+</blockquote>
+<h2 id="五、安装Git部署插件（hexo-deployer-git，用来推送到Github）"><a href="#五、安装Git部署插件（hexo-deployer-git，用来推送到Github）" class="headerlink" title="五、安装Git部署插件（hexo-deployer-git，用来推送到Github）"></a>五、安装Git部署插件（hexo-deployer-git，用来推送到Github）</h2><p>保持在 <code>D:\blog</code> 目录，执行：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、去GitHub新建专属博客仓库（非常关键！名字不能错）"><a href="#六、去GitHub新建专属博客仓库（非常关键！名字不能错）" class="headerlink" title="六、去GitHub新建专属博客仓库（非常关键！名字不能错）"></a>六、去GitHub新建专属博客仓库（非常关键！名字不能错）</h2><ol>
+<li>登录GitHub，右上角点 <code>New repository</code> 新建仓库</li>
+<li>填写参数（严格遵守）<ul>
+<li>Repository name：<code>你的用户名.github.io</code>（示例：<code>vuercon.github.io</code>）</li>
+<li>仓库权限：Public（公开免费）</li>
+<li>❌ <strong>不要勾选 Add a README file</strong></li>
+<li>其余全部空着，点 <code>Create repository</code> 创建<blockquote>
+<p>⚠️ 仓库名字错一个字符，后面部署就会报 <code>Repository not found</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="七、修改Hexo核心配置文件-config-yml"><a href="#七、修改Hexo核心配置文件-config-yml" class="headerlink" title="七、修改Hexo核心配置文件 _config.yml"></a>七、修改Hexo核心配置文件 <code>_config.yml</code></h2><ol>
+<li>用IDEA&#x2F;VS Code打开 <code>D:\blog\_config.yml</code></li>
+<li>滚动到<strong>文件最末尾</strong>，找到deploy配置块，全部替换为下面内容</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> [<span class="string">https://github.com/</span>]<span class="string">(https://github.com/)你的用户名/你的用户名.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>✅ YAML语法铁则：冒号 <code>:</code> <strong>后面必须跟一个空格</strong>，否则直接报错<br>示例（你的情况）：<code>repo: [https://github.com/vuercon/vuercon.github.io.git](https://github.com/vuercon/vuercon.github.io.git)</code></p>
+<ol start="3">
+<li>Ctrl+S保存文件</li>
+</ol>
+</blockquote>
+<h2 id="八、部署上线（上传博客到GitHub-Pages）"><a href="#八、部署上线（上传博客到GitHub-Pages）" class="headerlink" title="八、部署上线（上传博客到GitHub Pages）"></a>八、部署上线（上传博客到GitHub Pages）</h2><p>保持终端在 <code>D:\blog&gt;</code>，两条命令依次执行</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>hexo g</code> &#x3D; hexo generate：生成静态网页文件（public文件夹）</li>
+<li><code>hexo d</code> &#x3D; hexo deploy：自动git推送、部署到Github<blockquote>
+<p>执行<code>hexo d</code>会自动弹出浏览器，登录你的GitHub账号，完成授权<br>✅ 看到 <code>deploy done</code> 字样，代表部署成功！<br>👉 线上访问地址：<code>https://你的用户名.github.io</code><br>刚上传后，GitHub同步需要几十秒~2分钟，打不开就多刷新几次</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h1 id="日常使用流程（以后写文章只需要这一套）"><a href="#日常使用流程（以后写文章只需要这一套）" class="headerlink" title="日常使用流程（以后写文章只需要这一套）"></a>日常使用流程（以后写文章只需要这一套）</h1><ol>
+<li>打开终端，进入博客目录</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">D:</span></span><br><span class="line"><span class="function"><span class="title">cd</span> <span class="title">blog</span></span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>新建一篇文章（引号里是文章标题，支持中文）</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;文章标题&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>文件自动生成在 <code>D:\blog\source\_posts\文章标题.md</code></p>
+<ol start="3">
+<li>用编辑器打开这个<code>.md</code>文件，写Markdown内容（标题、文字、图片、列表）</li>
+<li>写完保存，重新生成+部署更新网站</li>
+</ol>
+</blockquote>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>刷新 <code>https://你的用户名.github.io</code>，就能看到新文章</li>
+</ol>
+<h2 id="高频常备命令表（收藏）"><a href="#高频常备命令表（收藏）" class="headerlink" title="高频常备命令表（收藏）"></a>高频常备命令表（收藏）</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hexo s</code></td>
+<td>本地启动预览，localhost:4000，写完先本地看效果</td>
+</tr>
+<tr>
+<td><code>hexo new &quot;标题&quot;</code></td>
+<td>新建文章</td>
+</tr>
+<tr>
+<td><code>hexo clean</code></td>
+<td>清理缓存！页面错乱、样式异常优先跑这个</td>
+</tr>
+<tr>
+<td><code>hexo g</code></td>
+<td>生成静态页面</td>
+</tr>
+<tr>
+<td><code>hexo d</code></td>
+<td>部署上传到GitHub</td>
+</tr>
+<tr>
+<td><code>hexo g &amp;&amp; hexo d</code></td>
+<td>生成+上传一键组合命令</td>
+</tr>
+</tbody></table>
+<h2 id="拓展方向（搞定基础后再玩）"><a href="#拓展方向（搞定基础后再玩）" class="headerlink" title="拓展方向（搞定基础后再玩）"></a>拓展方向（搞定基础后再玩）</h2><ol>
+<li>更换美化主题（Butterfly是最热门）</li>
+<li>配置图床，在文章里放图片</li>
+<li>增加标签、分类、搜索、评论功能</li>
+</ol>
+<h1 id="Markdown基础语法"><a href="#Markdown基础语法" class="headerlink" title="Markdown基础语法"></a>Markdown基础语法</h1><h1 id="✍️-Hexo博客-Markdown-基础语法速查表"><a href="#✍️-Hexo博客-Markdown-基础语法速查表" class="headerlink" title="✍️ Hexo博客 Markdown 基础语法速查表"></a>✍️ Hexo博客 Markdown 基础语法速查表</h1><blockquote>
+<p>直接复制就能用，写文章放在 <code>source/_posts/xxx.md</code></p>
+</blockquote>
+<h2 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>博客文章一般用 <code>##</code> 二级标题就足够，不要整篇全是一级标题</p>
+</blockquote>
+<h2 id="二、文字样式"><a href="#二、文字样式" class="headerlink" title="二、文字样式"></a>二、文字样式</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">**加粗文字**</span></span><br><span class="line"><span class="emphasis">*斜体文字*</span></span><br><span class="line"><span class="strong">**<span class="emphasis">*加粗+斜体*</span>**</span></span><br><span class="line">~~删除线~~</span><br><span class="line"><span class="code">`行内代码`</span></span><br></pre></td></tr></table></figure>
+<p>效果：<strong>加粗文字</strong>、<em>斜体文字</em>、<em><strong>加粗斜体</strong></em>、<del>删除线</del>、<code>行内代码</code></p>
+<h2 id="三、列表"><a href="#三、列表" class="headerlink" title="三、列表"></a>三、列表</h2><h3 id="无序列表（-或者-）"><a href="#无序列表（-或者-）" class="headerlink" title="无序列表（- 或者 *）"></a>无序列表（- 或者 *）</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> 第一项</span><br><span class="line"><span class="bullet">-</span> 第二项</span><br><span class="line"><span class="bullet">  -</span> 子项</span><br><span class="line"><span class="bullet">  -</span> 子项</span><br></pre></td></tr></table></figure>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 第一步</span><br><span class="line"><span class="bullet">2.</span> 第二步</span><br><span class="line"><span class="bullet">3.</span> 第三步</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、引用块"><a href="#四、引用块" class="headerlink" title="四、引用块"></a>四、引用块</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; 这是一段引用文字</span></span><br><span class="line"><span class="quote">&gt; 可以多行</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五、分割线"><a href="#五、分割线" class="headerlink" title="五、分割线"></a>五、分割线</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>用来分隔章节，很常用</p>
+<h2 id="六、链接-图片"><a href="#六、链接-图片" class="headerlink" title="六、链接 &amp; 图片"></a>六、链接 &amp; 图片</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">文字链接</span>](<span class="link">https://网址</span>)</span><br><span class="line">![<span class="string">图片描述</span>](<span class="link">图片地址</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>⚠️ 重点：Hexo本地图片如果直接放本地路径，部署到GitHub之后图片会裂！后面建议配置PicGo图床</p>
+</blockquote>
+<h2 id="七、代码块（写技术博客必用）"><a href="#七、代码块（写技术博客必用）" class="headerlink" title="七、代码块（写技术博客必用）"></a>七、代码块（写技术博客必用）</h2>   <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```语言</span></span><br><span class="line"><span class="code">这里放代码</span></span><br></pre></td></tr></table></figure>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line">   ````</span><br><span class="line">   ```cmd</span><br><span class="line">   hexo g</span><br><span class="line">   hexo d</span><br></pre></td></tr></table></figure>
+<pre><code>支持 cmd / python / java / cpp / javascript 等，会自动高亮
+
+## 八、表格
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| 名称 | 作用 |</span><br><span class="line">| ---- | ---- |</span><br><span class="line">| hexo s | 本地预览 |</span><br><span class="line">| hexo g | 生成静态文件 |</span><br><span class="line">| hexo d | 部署上线 |</span><br></pre></td></tr></table></figure>
+
+## 九、任务清单（todo）
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> [x] 已完成</span><br><span class="line"><span class="bullet">-</span> [ ] 待办事项</span><br></pre></td></tr></table></figure>
+
+## 📌 Hexo文章头部 Front-matter（非常重要！）
+新建文章之后，md文件最顶部自带这段，这个是Hexo识别文章的元信息：
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">文章标题</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2026-10-22 20:00:00</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Hexo</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">博客</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">建站教程</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+✅ 可以手动修改：
+- title：文章标题
+- date：发布时间
+- tags：标签（用来分类检索）
+- categories：文章分类
+
+
+
+# 简单工作流
+
+1. `hexo new &quot;标题&quot;`
+2. 打开 md 写笔记
+3. `hexo s` 本地预览，检查排版
+4. `hexo clean &amp;&amp; hexo g &amp;&amp; hexo d` 发布上线
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="cuid59Fvtv6GnQD1U9O5iB9xE" data-title="我的第一篇博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2026/10/22/hello-world/" class="article-date">
@@ -110,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/10/22/hello-world/" data-id="cuidr3QfPerEFt9EUdpNsEZV_" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/10/22/hello-world/" data-id="cuidKRI8PNUpcXRkpzB0_4Nuv" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -151,6 +403,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2026/10/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
+          </li>
         
           <li>
             <a href="/2026/10/22/hello-world/">Hello World</a>
